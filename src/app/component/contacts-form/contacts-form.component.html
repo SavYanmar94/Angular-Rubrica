@@ -1,0 +1,74 @@
+<div class="popup-overlay" [ngClass]="{'visible':isVisible}">
+    <div class="popup">
+        <div class="row">
+            <!-- Titolo del form -->
+            <h5 class="text-primary text-center">
+                {{contact ? 'Modifica Contatto' : 'Nuovo Contatto'}} </h5>
+            <!-- Messaggio di errore proveniente dal server -->
+            <h6 *ngIf="serverError" class="text-danger text-center">{{serverError}}</h6>
+        </div>
+        <form #f="ngForm" (submit)="formManager(f)">
+            <!-- Campo per il nome del contatto -->
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Nome:</label>
+                    <!-- Input per il nome con validazione -->
+                    <input [ngModel]="contact?.name" type="text" name="name" class="form-control" required pattern="[a-zA-Z\s'àèìòù]{1,50}" #name="ngModel" >
+                    <!-- Messaggio di errore per il campo del nome -->
+                    <small class="text-danger" 
+                    [ngStyle]="{'display':name.invalid && name.dirty ? 'block' : 'none'}">
+                    caratteri non ammessi</small>
+                </div>
+            </div>
+            <!-- Campo per il cognome del contatto -->
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Cognome:</label>
+                    <!-- Input per il cognome con validazione -->
+                    <input [ngModel]="contact?.lastname" type="text" name="lastname" class="form-control" required pattern="[a-zA-Z\s'àèìòù]{1,50}" #lastname="ngModel">
+                    <!-- Messaggio di errore per il campo del cognome -->
+                    <small class="text-danger" 
+                    [ngStyle]="{'display':lastname.invalid && lastname.dirty ? 'block' : 'none'}">
+                    caratteri non ammessi</small>
+                </div>
+            </div>
+            <!-- Campo per l'email del contatto -->
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Email:</label>
+                    <!-- Input per l'email con validazione -->
+                    <input [ngModel]="contact?.email" type="text" name="email" class="form-control" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" #email="ngModel">
+                    <!-- Messaggio di errore per il campo dell'email -->
+                    <small class="text-danger" 
+                    [ngStyle]="{'display':email.invalid && email.dirty ? 'block' : 'none'}">
+                    caratteri non ammessi</small>
+                </div>
+            </div>
+            <!-- Campo per il numero di cellulare del contatto -->
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>Cell:</label>
+                    <!-- Input per il numero di cellulare con validazione -->
+                    <input type="tel" id="telefono" name="cell" pattern="[0-9+]{1,15}" required [ngModel]="contact?.cell" #cell="ngModel">
+                    <!-- Messaggio di errore per il campo del numero di cellulare -->
+                    <small class="text-danger" 
+                    [ngStyle]="{'display':cell.invalid && cell.dirty ? 'block' : 'none'}">
+                    caratteri non ammessi</small>
+                </div>
+            </div>
+            <!-- Pulsanti per abbandonare o registrare il contatto -->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <!-- Pulsante per abbandonare il form -->
+                    <button type="button" class="btn btn-outline-warning" (click)="leaveContactForm(f)">
+                        Abbandona
+                    </button>
+                    <!-- Pulsante per registrare o modificare il contatto -->
+                    <input type="submit" class="btn btn-outline-primary ms-4" value="Registra"
+                    [value]="contact ? 'Modifica' : 'Registra'"
+                    [disabled]="f.invalid" >
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

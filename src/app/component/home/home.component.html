@@ -1,0 +1,20 @@
+<div class= "container">
+    <!-- Componente navbar: mostra la barra di navigazione e imposta l'evento 'contactsFormPopup' -->
+    <app-navbar (contactsFormPopup)="activateContactFormPopup()"></app-navbar>
+
+    <!-- Messaggio di errore del server, mostrato solo se presente -->
+    <div *ngIf="serverError" class="alert alert-danger text-center">{{serverError}}</div>
+
+    <!-- Componente contacts-form: mostra il form popup per la creazione o modifica di un contatto -->
+    <app-contacts-form 
+    [isVisible]="contactsFormPopupVisible"
+    (leave) = "deactivateContactFormPopup()"
+    (create) = "addNewContactAndDeactivatePopup($event)"
+    [contact]="contactToUpdate">
+
+    </app-contacts-form>
+    <app-contacts-table *ngIf="!serverError" [contactsChild]="contacts" 
+    (update)="activateContactFormPopupandUpdate($event)"
+    (delete)="deleteContact($event)"></app-contacts-table>
+    <app-footer></app-footer>
+</div>

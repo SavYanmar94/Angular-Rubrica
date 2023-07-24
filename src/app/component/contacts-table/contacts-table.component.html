@@ -1,0 +1,30 @@
+<div style="height:400px;overflow:auto;border-style:inset;border-width:2px;margin-top:50px;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Email</th>
+                <th>Cellulare</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ciclo *ngFor per iterare attraverso la lista di contatti e visualizzarli nella tabella -->
+            <tr *ngFor="let contact of contactsChild">
+                <!-- Colonne con i dettagli del contatto -->
+                <td class="align-middle">{{contact.name}}</td>
+                <td class="align-middle">{{contact.lastname}}</td>
+                <td class="align-middle">{{contact.email}}</td>
+                <td class="align-middle">{{contact.cell}}</td>
+                <td class="text-end align-middle">
+                    <!-- Pulsante per la modifica del contatto -->
+                    <button class="btn btn-sm btn-primary me-2"
+                    (click)="selectContactToUpdate(contact)" >Modifica</button>
+                    <!-- Pulsante per l'eliminazione del contatto -->
+                    <button class="btn btn-sm btn-danger" 
+                    (click)="deleteContact(contact.id!)">Elimina</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

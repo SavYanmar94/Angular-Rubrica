@@ -1,6 +1,22 @@
-# EsRubrica
+# EsRubrica - Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
+
+Traccia esercizio: 
+
+Mediante Angular Framework e json-server, creare un'applicazione rubrica che permetta
+all'utente utilizzatore di:
+
+1. Registrare un nuovo contatto rappresentato da:
+   ◦ nome
+   ◦ cognome
+   ◦ indirizzo mail
+   ◦ numero di telefono
+2. Visualizzare, in formato tabellare, tutti i contatti registrati
+3. Modificare i dati di un contatto archiviato
+4. Eliminare un contatto (sarebbe gradita una conferma preventiva)
+
+L'esercizio è stato svolto insieme dal gruppo : Saverio Mercante , Valeria Colabianchi , Carlotta Cima , Claudia Lella , Alessandra Guarcello
 
 ## Development server
 
