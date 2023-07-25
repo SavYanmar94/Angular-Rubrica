@@ -12,6 +12,10 @@ export class HomeComponent implements OnInit {
   serverError: any; // Variabile per gestire eventuali errori dal server
   contactsFormPopupVisible: boolean = false; // Variabile per gestire la visibilità del popup del form dei contatti
   contactToUpdate: Contact | undefined; // Contatto selezionato per la modifica
+  confirmPopupVisible: boolean = false;
+  contactToDelete: Contact | undefined;
+
+
 
   constructor(private contactService: ContactService) { }
 
@@ -57,5 +61,17 @@ export class HomeComponent implements OnInit {
       // Elimina il contatto dalla lista utilizzando l'indice trovato
       this.contacts.splice(index, 1);
     }
+  }
+
+  //popup per eliminare un contatto
+  activateConfirmPopup(contact:Contact): void 
+  {
+    this.contactToDelete = contact;
+    this.confirmPopupVisible = true;
+  }
+
+  closeConfirmPopup(): void
+  {
+    this.confirmPopupVisible = false;
   }
 }

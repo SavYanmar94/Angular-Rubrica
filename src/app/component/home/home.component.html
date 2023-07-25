@@ -15,6 +15,11 @@
     </app-contacts-form>
     <app-contacts-table *ngIf="!serverError" [contactsChild]="contacts" 
     (update)="activateContactFormPopupandUpdate($event)"
-    (delete)="deleteContact($event)"></app-contacts-table>
+    (delete)="activateConfirmPopup($event)"></app-contacts-table>
+    <app-delete-popup 
+    (leave)=" closeConfirmPopup()"
+    [isVisible]="confirmPopupVisible"
+    [contact]="contactToDelete"
+    (delete)="deleteContact($event)"></app-delete-popup>
     <app-footer></app-footer>
 </div>

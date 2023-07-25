@@ -3,5 +3,5 @@ export interface Contact {
       name?:string,
       lastname?:string,
       email?:string,
-      cell?:string
+      cell?:string;
 }

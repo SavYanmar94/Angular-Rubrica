@@ -1,0 +1,19 @@
+<div class="popup-overlay" [ngClass]="{'visible':isVisible}">
+    <div class="popup">
+        <h5 class="text-danger text-center">Conferma cancellazione</h5>
+        <h6>Sei sicuro di voler eliminare {{contact?.name}} {{contact?.lastname}}?</h6>
+        <form #f="ngForm" (leave)="confirmFormContacts(f)">
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-outline-danger mx-2" (click)="closeConfirmPopup(f)"
+                    (click)="deleteContact()">
+                        Elimina
+                    </button>
+                    <button type="button" class="btn btn-outline-primary mx-2" (click)="closeConfirmPopup(f)">
+                        Torna indietro
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

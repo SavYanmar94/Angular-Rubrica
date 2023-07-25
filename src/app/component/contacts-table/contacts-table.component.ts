@@ -11,7 +11,8 @@ export class ContactsTableComponent {
 
   @Input() contactsChild:Contact[]|undefined;
   @Output() update = new EventEmitter <Contact>()
-  @Output() delete = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<Contact>();
+  @Input() isVisible: boolean = false;
 
   //costruttore 
   constructor (private contactService:ContactService) {}
@@ -22,13 +23,10 @@ export class ContactsTableComponent {
     this.update.emit(contact);
   }
 
-  //metodo per eliminare un autore 
-  deleteContact(contactId:number):void{ 
-    
-    this.contactService.deleteContact(contactId)
-    .subscribe({
-      next: response => this.delete.emit(contactId),
-      error: e => console.log(e.message)
-  })
-}
+
+openConfirmPopup(contact:Contact): void
+  {
+    this.delete.emit(contact);
+  }
+
 }
